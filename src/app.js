@@ -3,14 +3,19 @@ import compression from 'express-compression';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import config from './config/config.js';
+import {connectMongo} from './config/utils/mongo.js'
+import productsRouter from './routes/products.router.js';
 
 
 const app = express();
 const PORT = config.port;
 const mongoDBURL = config.mongoDbUrl;
-console.log(config.mongoDbUrl, 'funciona?')
+
 app.use(express.json());
 app.use(compression());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 app.use(session({
     store: MongoStore.create({ mongoUrl: mongoDBURL, ttl: 86400 }),
@@ -20,10 +25,11 @@ app.use(session({
   })
 );
 
-
-const httpServer = app.listen(9090, ()=>{
-    console.log(`App listening on port 9090`);
+app.use("/api/products", productsRouter);
+const httpServer = app.listen(PORT, ()=>{
+    console.log(`App listening on port ${PORT}`);
 });
+connectMongo();
 
 app.get("*", (req, res)=>{
     return res.status(404).json({

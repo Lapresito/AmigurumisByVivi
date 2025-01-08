@@ -1,11 +1,17 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon -e yaml,js ./src/app.js",
+    "dev1": "./src/app.js --mode DEVELOPEMENT",
     "start": "node ./src/app.js --mode PRODUCTION",
     "test": "mocha test/supertest.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lapresito/AmigurumisByVivi.git"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +28,8 @@
     "git": "^0.1.5",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.3",
-    "uuid": "^11.0.3"
+    "nodemon": "^3.1.9",
+    "uuid": "^11.0.3",
+    "winston": "^3.17.0"
   }
 }

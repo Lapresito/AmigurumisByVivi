@@ -1,20 +1,14 @@
 import { ProductService } from "../services/products.service.js";
-import { ProductDTO } from '../dao/DTO/product.dto.js'
+// import { ProductDTO } from '../dao/DTO/product.dto.js'
 const productService = new ProductService
 
 
 class ProductController {
 
 
-    async getWithQuerys(req, res) {
+    async getAll(req, res) {
         try {
-            let {
-                limit = 4, page = 1, query, sort
-            } = req.query
-            if (sort && (sort !== 'asc' && sort !== 'desc')) {
-                sort = ''
-            }
-            const payload = await productService.getAll(page, limit, sort, query);
+            const payload = await productService.getAll();
             res.status(200).json({
                 status: "success",
                 payload: payload
@@ -49,8 +43,8 @@ class ProductController {
     async addProduct(req, res) {
         try {
             const product = req.body
-            const productToAdd = new ProductDTO(product)
-            await productService.addProduct(productToAdd)
+            // const productToAdd = new ProductDTO(product)
+            await productService.addProduct(product)
             res.status(201).json({
                 status: "success",
                 message: 'Added successfuly',

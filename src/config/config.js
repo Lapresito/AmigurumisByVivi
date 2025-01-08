@@ -1,14 +1,16 @@
 import dotenv from 'dotenv';
-import { Command } from 'commander';
+// import { Command } from 'commander';
 
-const program = new Command();
+// const program = new Command();
 
-program.option('--mode <mode>', 'PRODUCTION', 'DEVELOPMENT');
-program.parse();
+// program.option('--mode <mode>', 'PRODUCTION', 'DEVELOPMENT');
+// program.parse();
 
-dotenv.config({
+
+dotenv.config(/*{
     path: program.opts().mode === 'DEVELOPMENT' ? '../../.env.development' : '../../.env.production'
-})
+}*/);
+
 
 export default {
     mode: process.env.MODE,
