@@ -13,6 +13,10 @@ class ProductClass{
         const product = await ProductModel.findOne({ _id: id});
         return product;
     }
+    async findCode(code){
+        const product = await ProductModel.findOne({ code: code});
+        return product;
+    }
     async updateOne(id, product){
         await ProductModel.updateOne({_id: id},  {
             title: product.title,
@@ -20,7 +24,6 @@ class ProductClass{
             price: product.price,
             thumbnail: product.thumbnail,
             code: product.code,
-            stock: product.stock,
             category: product.category,
             status: true
         });

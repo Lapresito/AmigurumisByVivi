@@ -5,6 +5,8 @@ import MongoStore from 'connect-mongo';
 import config from './config/config.js';
 import {connectMongo} from './config/utils/mongo.js'
 import productsRouter from './routes/products.router.js';
+import logger from './config/utils/logger.js';
+import errorHandler from './middlewares/errorHandler.js';
 
 
 const app = express();
@@ -16,7 +18,7 @@ app.use(compression());
 app.use(express.urlencoded({
     extended: true
 }));
-
+app.use(errorHandler);
 app.use(session({
     store: MongoStore.create({ mongoUrl: mongoDBURL, ttl: 86400 }),
     secret: 'secret',
@@ -26,8 +28,8 @@ app.use(session({
 );
 
 app.use("/api/products", productsRouter);
-const httpServer = app.listen(PORT, ()=>{
-    console.log(`App listening on port ${PORT}`);
+app.listen(PORT, ()=>{
+    logger.info(`App listening on port ${PORT}`);
 });
 connectMongo();
 

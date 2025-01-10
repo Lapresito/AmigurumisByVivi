@@ -7,10 +7,8 @@ const schema = new Schema({
     price: { type: Number, required: true, max: 100000000 },
     thumbnail: { type: String, required: true, max: 100 },
     code: { type: String, required: true, max: 100, unique: true },
-    stock: { type: Number, required: true, max: 200000000 },
     status: {type: Boolean},
     category: { type: String, required: true, max: 100 },
-    owner: { type: String }
 }, { versionKey: false });
 
 // schema.plugin(mongoosePaginate);
