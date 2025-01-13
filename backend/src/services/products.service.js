@@ -1,5 +1,5 @@
 import { productModel } from '../methods/mongo/classes/products.dao.js';
-import { idValidation } from '../config/utils/mongo.js';
+import { idValidation } from '../config/mongo.js';
 import CustomError from '../errors/custom-error.js';
 import { generateProductErrorInfo } from '../errors/product-error.js';
 import Errors from '../errors/enums.js';

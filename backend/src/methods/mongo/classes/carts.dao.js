@@ -22,6 +22,10 @@ class CartClass{
         return cart;
 
     }
+    async deleteOne(id){
+        let cart = await CartModel.deleteOne({_id: id});
+        return cart;
+    }
 }
 
 export const cartModel = new CartClass;

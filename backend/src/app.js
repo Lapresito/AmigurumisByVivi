@@ -3,8 +3,9 @@ import compression from 'express-compression';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import config from './config/config.js';
-import {connectMongo} from './config/utils/mongo.js'
+import {connectMongo} from './config/mongo.js'
 import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js';
 import logger from './config/utils/logger.js';
 import errorHandler from './middlewares/errorHandler.js';
 
@@ -28,6 +29,7 @@ app.use(session({
 );
 
 app.use("/api/products", productsRouter);
+app.use("/api/carts", cartsRouter);
 app.listen(PORT, ()=>{
     logger.info(`App listening on port ${PORT}`);
 });

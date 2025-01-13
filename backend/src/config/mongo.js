@@ -1,7 +1,7 @@
 import { connect } from 'mongoose';
 import mongoose from 'mongoose';
-import config from '../config.js';
-import logger from './logger.js';
+import config from './config.js';
+import logger from './utils/logger.js';
 export async function connectMongo() {
   try {
     await connect(config.mongoDbUrl);
@@ -14,8 +14,8 @@ export async function connectMongo() {
 export async function idValidation(id) {
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      logger.warn("Invalid product ID format");
-      throw new Error("Invalid product ID format");
+      logger.warn("Invalid mongo ID format");
+      throw new Error("Invalid mongo ID format");
     }
   } catch (error) {
     logger.error({ error: error, errorMsg: error.message });

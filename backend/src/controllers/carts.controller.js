@@ -1,7 +1,5 @@
 import { CartService } from "../services/carts.service.js";
-import { UserService } from "../services/users.service.js";
 const cartService = new CartService;
-const userService = new UserService;
 
 
 class CartController {
@@ -97,26 +95,32 @@ class CartController {
     }
     async deleteProductFromCart(req, res) {
         try {
-            const pid = req.params.pid;
-            const cid = req.params.cid;
-            await cartService.deleteProductFromCart(pid, cid);
+            const pid = req.params.pid; // ID del producto
+            const cid = req.params.cid; // ID del carrito
+            const { removeCompletely = false } = req.query; // Obtener la opción desde los parámetros de consulta
+    
+            // Llamar al servicio para eliminar el producto
+            await cartService.deleteProductFromCart(pid, cid, removeCompletely === 'true');
+    
+            // Obtener el carrito actualizado
             const cart = await cartService.getCartById(cid);
-            console.log(cart)
-            res.status(201).json({
+    
+            // Enviar respuesta exitosa
+            res.status(200).json({
                 status: "success",
-                message: `Product with id:${pid} was deleted successfully from cart with id ${cid}`,
+                message: `Product with id:${pid} was ${removeCompletely === 'true' ? 'completely removed' : 'partially removed *-1 quantity*'} from cart with id ${cid}`,
                 payload: cart
             });
-
         } catch (error) {
+            // Manejo de errores
             res.status(400).json({
                 status: "error",
                 errorName: error.name,
                 error: error.message
-            })
-
+            });
         }
     }
+    
     async updateQuantity(req, res) {
         try {
             const pid = req.params.pid;
