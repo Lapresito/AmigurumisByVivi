@@ -1,4 +1,5 @@
 import { ProductService } from "../services/products.service.js";
+import logger from "../config/utils/logger.js";
 // import { ProductDTO } from '../dao/DTO/product.dto.js'
 const productService = new ProductService
 
@@ -9,6 +10,9 @@ class ProductController {
     async getAll(req, res) {
         try {
             const payload = await productService.getAll();
+            //debug
+            logger.info('All products were fetched succesfully');
+            //debug
             res.status(200).json({
                 status: "success",
                 payload: payload

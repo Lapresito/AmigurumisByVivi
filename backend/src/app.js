@@ -8,6 +8,8 @@ import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import logger from './config/utils/logger.js';
 import errorHandler from './middlewares/errorHandler.js';
+import cors from 'cors';
+import {corsOptions} from './config/utils/cors.js';
 
 
 const app = express();
@@ -27,6 +29,8 @@ app.use(session({
     saveUninitialized: true,
   })
 );
+
+app.use(cors(corsOptions));
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
