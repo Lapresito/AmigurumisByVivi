@@ -23,5 +23,9 @@ export default {
     persistence: process.env.PERSISTENCE,
     apiUrl: process.env.API_URL,
     googleEmail: process.env.GOOGLE_EMAIL,
-    googlePass: process.env.GOOGLE_PASSWORD
+    googlePass: process.env.GOOGLE_PASSWORD,
+    googleID: process.env.GOOGLE_CLIENT_ID,
+    googleSecret: process.env.GOOGLE_CLIENT_SECRET,
+    tokenJWTSecret: process.env.JWT_SECRET,
+    sessionSecret: process.env.SESSION_SECRET
 }

@@ -9,7 +9,8 @@ import cartsRouter from './routes/carts.router.js';
 import logger from './config/utils/logger.js';
 import errorHandler from './middlewares/errorHandler.js';
 import cors from 'cors';
-import {corsOptions} from './config/utils/cors.js';
+
+
 
 
 const app = express();
@@ -23,17 +24,30 @@ app.use(express.urlencoded({
 }));
 app.use(errorHandler);
 app.use(session({
-    store: MongoStore.create({ mongoUrl: mongoDBURL, ttl: 86400 }),
-    secret: 'secret',
-    resave: true,
+    secret: config.sessionSecret,
+    resave: false,
     saveUninitialized: true,
-  })
-);
+    cookie: { secure: false, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 } // 1 día de duración
+  }));
 
-app.use(cors(corsOptions));
+
+
+// app.use(passport.authenticate('session'));
+// app.use(
+//     helmet({
+//         crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' }, 
+//     })
+// );
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
+
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
+
 app.listen(PORT, ()=>{
     logger.info(`App listening on port ${PORT}`);
 });

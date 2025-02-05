@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import './cssComp/NavBar.css'; // Importa el archivo de estilos
+import logo from "/logosinfondo.png"
 
 const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src="" alt="Logo" />
+        <img src={logo} />
         <h1>
           <Link to="/" className="navbar-brand">AmigurumisByVivi</Link>
         </h1>

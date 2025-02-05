@@ -22,10 +22,25 @@ class CartController {
 
     async newCart(req, res) {
         try {
+            // Verificar si el usuario ya tiene un carrito en sesión
+            if (req.session.cartId) {
+                const existingCart = await cartService.getCartById(req.session.cartId);
+                if (existingCart) {
+                    return res.status(200).json({
+                        status: "success",
+                        message: "Carrito ya existente",
+                        payload: existingCart
+                    });
+                }
+            }
+    
+            // Si no tiene carrito, se crea uno nuevo
             let newCart = await cartService.addCart();
+            req.session.cartId = newCart._id; // Guardamos el ID del carrito en la sesión
+    
             res.status(201).json({
                 status: "success",
-                message: 'Cart created successfuly',
+                message: "Carrito creado exitosamente",
                 payload: newCart
             });
         } catch (error) {
@@ -33,7 +48,7 @@ class CartController {
                 status: "error",
                 errorName: error.name,
                 error: error.message
-            })
+            });
         }
     }
     async getCartById(req, res) {

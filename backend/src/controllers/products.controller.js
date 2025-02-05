@@ -11,7 +11,7 @@ class ProductController {
         try {
             const payload = await productService.getAll();
             //debug
-            logger.info('All products were fetched succesfully');
+            logger.info('All products were fetched succesfully - debbuging (remember clean it at prod.ctrller)');
             //debug
             res.status(200).json({
                 status: "success",
