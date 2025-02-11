@@ -27,5 +27,8 @@ export default {
     googleID: process.env.GOOGLE_CLIENT_ID,
     googleSecret: process.env.GOOGLE_CLIENT_SECRET,
     tokenJWTSecret: process.env.JWT_SECRET,
-    sessionSecret: process.env.SESSION_SECRET
+    sessionSecret: process.env.SESSION_SECRET,
+    mercadoPagoToken: process.env.MERCADO_PAGO_TOKEN,
+    httpTohttps: process.env.HTTP_TO_HTTPS,
+    frontendUrl: process.env.FRONTEND_URL
 }

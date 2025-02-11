@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Loading from './Loding';
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +21,7 @@ const ItemListContainer = () => {
 
   return (
     <div>
-      {loading && <p>Loading...</p>}
+      {loading && <Loading/>}
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
       {!loading && !error && (
         <pre>{JSON.stringify(products, null, 2)}</pre>

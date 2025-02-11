@@ -1,7 +1,7 @@
 import { ProductService } from "../services/products.service.js";
 import logger from "../config/utils/logger.js";
 // import { ProductDTO } from '../dao/DTO/product.dto.js'
-const productService = new ProductService
+const productService = new ProductService;
 
 
 class ProductController {
@@ -43,7 +43,7 @@ class ProductController {
 
             })
         }
-    }
+    };
     async addProduct(req, res) {
         try {
             const product = req.body
@@ -61,7 +61,7 @@ class ProductController {
                 error: error.message
             })
         }
-    }
+    };
     async delete(req, res) {
         try {
             const id = req.params.id;
@@ -78,7 +78,7 @@ class ProductController {
                 error: error.message
             })
         }
-    }
+    };
     async updateProduct(req, res) {
         try {
             const id = req.params.id;
@@ -96,8 +96,8 @@ class ProductController {
                 error: error.message
             })
         }
-    }
+    };
 
-}
+};
 
 export const productController = new ProductController;

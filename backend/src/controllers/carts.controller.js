@@ -185,6 +185,28 @@ class CartController {
             return res.status(500).render('error',{error: error.message})
         }
     }
+    async getSessionCart(req, res) {
+        try {
+            if (!req.session.cartId) {
+                return res.status(404).json({
+                    status: "error",
+                    message: "No cart found in session"
+                });
+            }
+    
+            res.status(200).json({
+                status: "success",
+                payload: { cartId: req.session.cartId }
+            });
+        } catch (error) {
+            res.status(500).json({
+                status: "error",
+                errorName: error.name,
+                error: error.message
+            });
+        }
+    }
+    
 
 }
 export const cartController = new CartController();

@@ -7,64 +7,65 @@
     background-color: #f8f9fa;
     border-bottom: 1px solid #ddd;
     font-family: Arial, sans-serif;
-  }
-  
-  /* Logo y título */
-  .navbar-logo {
+}
+
+/* Logo y título */
+.navbar-logo {
     display: flex;
     align-items: center;
-  }
-  
-  .navbar-logo img {
+}
+
+.navbar-logo img {
     height: 50px;
     margin-right: 10px;
-  }
-  
-  .navbar-brand {
+}
+
+.navbar-brand {
     text-decoration: none;
     color: #333;
     font-size: 1.5rem;
     font-weight: bold;
-  }
-  
-  /* Enlaces */
-  .navbar-links, .navbar-contact, .navbar-cart {
+}
+
+/* Enlaces del NavBar */
+.navbar-links {
     display: flex;
-    align-items: center;
-  }
-  
-  .navbar-link {
-    margin: 0 10px;
+    justify-content: center; /* Centrado de enlaces */
+    gap: 20px; /* Espacio entre los enlaces */
+    flex-grow: 1; /* Para que se distribuya el espacio restante */
+}
+
+.navbar-link {
     text-decoration: none;
     color: #007bff;
     font-weight: bold;
     transition: color 0.3s;
-  }
-  
-  .navbar-link:hover {
+}
+
+.navbar-link:hover {
     color: #0056b3;
-  }
-  
-  /* Categorías */
-  .navbar-categories {
+}
+
+/* Categorías */
+.navbar-categories {
     position: relative;
-  }
-  
-  .navbar-button {
+}
+
+.navbar-button {
     background-color: #007bff;
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
-  }
-  
-  .navbar-button:hover {
+}
+
+.navbar-button:hover {
     background-color: #0056b3;
-  }
-  
-  /* Dropdown */
-  .dropdown {
+}
+
+/* Dropdown */
+.dropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -74,27 +75,64 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: none;
     z-index: 10;
-  }
-  
-  .navbar-categories:hover .dropdown {
+}
+
+.navbar-categories:hover .dropdown {
     display: block;
-  }
-  
-  .dropdown-item {
+}
+
+.dropdown-item {
     display: block;
     padding: 8px 10px;
     text-decoration: none;
     color: #333;
     white-space: nowrap;
-  }
-  
-  .dropdown-item:hover {
+}
+
+.dropdown-item:hover {
     background-color: #f1f1f1;
     color: #007bff;
-  }
-  
-  /* Carrito */
-  .navbar-cart {
+}
+
+/* Carrito */
+.navbar-cart {
     margin-left: 10px;
-  }
-  
+}
+
+/* Responsive: Mobile version */
+@media (max-width: 768px) {
+    /* Ocultar los enlaces en dispositivos móviles */
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #f8f9fa;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-links.show {
+        display: flex;
+    }
+
+    .navbar-hamburger {
+        display: block;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: #007bff;
+    }
+
+    .navbar-hamburger:focus {
+        outline: none;
+    }
+
+    .navbar-links .navbar-link {
+        padding: 10px;
+        text-align: center;
+    }
+}

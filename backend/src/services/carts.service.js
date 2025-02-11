@@ -114,7 +114,8 @@ export class CartService {
             } else {
                 cart.products.push({ idProduct: productId, quantity: 1 });
             }
-        
+            
+
             // Guardar cambios
             await cart.save();
             logger.info(`Product ${productId} was added successfully to cart ${cartId}`);
@@ -169,7 +170,8 @@ async deleteProductFromCart(productId, cartId, removeCompletely = false) {
         } else {
             existingProduct.quantity -= 1;
         }
-    
+        
+
         // Guardar cambios
         await cart.save();
         logger.info(`Product ${productId} was ${removeCompletely ? 'completely removed' : 'partially removed'} from cart ${cartId}`);
