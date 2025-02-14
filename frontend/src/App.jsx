@@ -10,10 +10,11 @@ import Cart from "./components/Cart";
 import Gracias from "./components/Gracias";
 import Footer from "./components/Footer";
 import Test from "./components/pay/Test";
+import ShoppingCartContextProvider from "./context/ShoppingCartContext";
 
 const App = () => {
     return (
-
+        <ShoppingCartContextProvider>
             <BrowserRouter>
                 <NavBar />
                 <Routes>
@@ -28,6 +29,7 @@ const App = () => {
                 </Routes>
                 <Footer />
             </BrowserRouter>
+        </ShoppingCartContextProvider>
     );
 };
 

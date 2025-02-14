@@ -19,14 +19,15 @@ class PaymentController {
             const preference = new Preference(client);
             await preference.create({
                 body: {
-                items: [
-                    {
-                        title: req.body.title,
-                        unit_price: Number(req.body.price),
-                        quantity: Number(req.body.quantity),
-                        currency_id: 'UYU'
-                    }
-                ],
+                items: req.body.items,
+                // [
+                //     {
+                //         title: req.body.title,
+                //         unit_price: Number(req.body.price),
+                //         quantity: Number(req.body.quantity),
+                //         currency_id: 'UYU'
+                //     }
+                // ],
                 back_urls: {
                     success: `${config.frontendUrl}/gracias`,
                     failure: `${config.frontendUrl}/gracias`,

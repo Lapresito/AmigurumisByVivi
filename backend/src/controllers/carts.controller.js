@@ -1,5 +1,6 @@
 import { CartService } from "../services/carts.service.js";
 const cartService = new CartService;
+import logger from "../config/utils/logger.js";
 
 
 class CartController {
@@ -37,7 +38,11 @@ class CartController {
             // Si no tiene carrito, se crea uno nuevo
             let newCart = await cartService.addCart();
             req.session.cartId = newCart._id; // Guardamos el ID del carrito en la sesión
-    
+            
+            //DEBUGGING
+            logger.info(`Nuevo carrito creado: ${newCart} / borrarlo msg de debugging`);
+            //DEBUGGING
+
             res.status(201).json({
                 status: "success",
                 message: "Carrito creado exitosamente",
@@ -55,6 +60,11 @@ class CartController {
         try {
             const id = req.params.id;
             const cart = await cartService.getCartById(id);
+
+            //DEBUGGING
+            logger.info(`Carrito obtenido por id: ${cart} / borrarlo msg de debugging`);
+            //DEBUGGING
+
             res.status(200).json({
                 status: "success",
                 message: `Cart with id:${id}`,
@@ -75,6 +85,12 @@ class CartController {
             const cid = req.params.cid;
             await cartService.addProductToCart(pid, cid);
             const cart = await cartService.getCartById(cid);
+
+
+            //DEBUGGING
+            logger.info(`Producto ${pid} agregado al carrito: ${cart} / borrarlo msg de debugging`);
+            //DEBUGGING
+
             res.status(201).json({
                 status: "success",
                 message: `Product with id:${pid} was added successfully to cart with id ${cid}`,
@@ -193,6 +209,10 @@ class CartController {
                     message: "No cart found in session"
                 });
             }
+
+            //DEBUGGING
+            logger.info(`Carrito en sesión: ${req.session.cartId} / borrarlo msg de debugging`);
+            //DEBUGGING
     
             res.status(200).json({
                 status: "success",

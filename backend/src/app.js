@@ -19,7 +19,10 @@ const PORT = config.port;
 const mongoDBURL = config.mongoDbUrl;
 
 app.use(express.json());
-app.use(cors({}));
+app.use(cors({
+    origin: "http://localhost:5173", // Especifica el frontend
+    credentials: true, // Permite el uso de cookies y sesiones
+}));
 // app.use(compression());
 app.use(express.urlencoded({
     extended: true

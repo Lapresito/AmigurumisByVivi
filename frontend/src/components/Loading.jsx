@@ -1,6 +1,6 @@
 
 import { SpinnerCircular } from 'spinners-react';
-const Loding = () => {
+const Loading = () => {
 
     return (
       <div className="spinner-wrapper">
@@ -9,4 +9,4 @@ const Loding = () => {
     )
 }
 
-export default Loding
+export default Loading
