@@ -63,10 +63,7 @@ const ShoppingCartContextProvider = ({ children }) => {
     // 🛒 3. Agregar un producto al carrito
     const addToCart = async (product, quantity) => {
         if (!cartId) return;
-        console.log(product);
-        console.log(cartId);
         try {
-            console.log(product);
             const response = await fetch(`${API_URL}/${cartId}/product/${product._id}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -137,9 +134,6 @@ const ShoppingCartContextProvider = ({ children }) => {
             console.error("Error al vaciar el carrito:", error);
         }
     };
-
-    console.log(cartId);
-    console.log(cartItems);
 
     return (
         <CartContext.Provider value={{ cartId, cartItems, addToCart, removeFromCart, updateProductQuantity, clearCart }}>

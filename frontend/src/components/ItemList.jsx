@@ -3,7 +3,6 @@ import Item from "./Item";
 
 const ItemList = ({ products = [] }) => {  // Asegura que products sea un array por defecto
   if (!products.length) return <p>No hay productos disponibles.</p>;
-    console.log(products);
   return (
     <div>
       {products.map((prod) => (

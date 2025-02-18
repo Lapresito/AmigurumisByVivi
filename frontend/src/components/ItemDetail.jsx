@@ -28,11 +28,8 @@ const ItemDetail = ({ product }) => {
     // Función para añadir al carrito si la cantidad es mayor a 0
     const handleAddToCart = async () => {
         console.log(product, "EN HANDDLE ADD TO CART");
-        if (quantity > 0) {
-            console.log(`Añadido ${quantity} ${product.title} al carrito`);
-            console.log(addToCart);
+
             addToCart(product, quantity);
-        }
     };
 
     return (
